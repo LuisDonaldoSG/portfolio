@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...but the template belongs in the repo: it documents NEXT_PUBLIC_SITE_URL
+# and contains no values.
+!.env.example
 
 # vercel
 .vercel

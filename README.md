@@ -32,7 +32,7 @@ src/
 │   ├── sections/ Hero · FeaturedWork · MoreWork · ProjectGrid
 │   │             AiEngineering · Timeline · StackSection · About · Contact
 │   └── ui/       Button · Reveal · Aurora · Marquee · SectionHeading
-│                 ProjectCard · ProjectVisual · OwnershipBadge
+│                 ProjectCard · ProjectVisual · OwnershipBadge · Credential
 ├── content/      projects.ts · profile.ts · ai.ts · types.ts  ← el contenido vive aquí
 └── lib/          seo.ts · site.ts
 ```
@@ -50,6 +50,12 @@ Todo el texto y los datos están en `src/content/`. **No hay que tocar component
 2. **Redes** — en `src/content/profile.ts` queda un `TODO`: LinkedIn y GitHub están comentados. El CV muestra el nombre del perfil («Donaldo Gómez») pero no el enlace, y no quiero adivinar el slug. El correo público ya es el del CV (`donaldo293y@gmail.com`).
 
    El teléfono del CV **no** está en el sitio, a propósito: publicarlo en una página indexable lo expone a scrapers. Si lo quieres, agrégalo a `socials`.
+
+3. **Cédula profesional** — el número (`14772789`) sí está publicado, y a propósito: es registro público, cualquiera puede consultarlo por nombre en el [Registro Nacional de Profesionistas](https://cedulaprofesional.sep.gob.mx/) y en México se imprime de rutina en tarjetas y facturas. Un número que nadie puede verificar valdría menos que ninguno, así que va acompañado del enlace al registro.
+
+   De la constancia **solo** se copiaron cuatro datos duraderos: número, profesión registrada, fecha de titulación y fecha de expedición. El folio de la constancia, la firma electrónica y el sello digital quedaron fuera a propósito: autentican ese PDF —que vence a los 30 días—, no a la persona.
+
+   Si prefieres no publicarla, borra `license` dentro de `education` en `src/content/profile.ts`: la tarjeta de Trayectoria, la fila de «Sobre mí» y el JSON-LD desaparecen solos: el campo es opcional.
 
 ## Agregar capturas de pantalla
 
@@ -74,6 +80,7 @@ Cada proyecto dibuja una **firma generada** (una ventana estilizada teñida con 
 | Qué | Fuente |
 | --- | --- |
 | Identidad, trayectoria, formación, idiomas, skills | Tu CV (`cv.pdf`) |
+| Cédula profesional | «Constancia de Situación Profesional» de la SEP |
 | Proyectos, métricas, stacks, arquitectura | Lectura directa de los repos en `~/Developer/t1` |
 | `ownership` (commits propios vs. totales) | `git log` sobre cada repo |
 | Sección **Ingeniería con IA** | `t1/shipping-admin-nextjs/CLAUDE.md` (288 líneas, autor único) |

@@ -1,3 +1,6 @@
+import type { ReactNode } from "react";
+
+import { CredentialBadge } from "@/components/ui/Credential";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -20,11 +23,21 @@ export function About({
   education,
   languages,
 }: Props) {
-  const facts = [
+  // `value` is a node, not a string, so the cédula row can carry the registry
+  // link. Everything else stays plain text.
+  const facts: { label: string; value: ReactNode }[] = [
     { label: "Rol", value: role },
     { label: "Base", value: location },
     { label: "Experiencia", value: years },
     { label: "Formación", value: `${education.degree} · ${education.school}` },
+    ...(education.license
+      ? [
+          {
+            label: "Cédula profesional",
+            value: <CredentialBadge license={education.license} />,
+          },
+        ]
+      : []),
     {
       label: "Idiomas",
       value: languages.map((l) => `${l.name} (${l.level})`).join(" · "),

@@ -68,6 +68,7 @@ export function buildMetadata({
 
 export function personSchema(profile: Profile) {
   const skills = profile.skillGroups.flatMap((group) => group.items);
+  const { license } = profile.education;
 
   return {
     "@context": "https://schema.org",
@@ -92,11 +93,49 @@ export function personSchema(profile: Profile) {
       "@type": "CollegeOrUniversity",
       name: profile.education.school,
     },
-    hasCredential: {
-      "@type": "EducationalOccupationalCredential",
-      credentialCategory: "degree",
-      name: profile.education.degree,
-    },
+    // Two credentials, and they are different kinds of claim: the degree is
+    // awarded by the university, the cédula is a licence granted by the state
+    // and checkable against a public registry. Search engines only treat the
+    // second as verifiable, so it carries the registry as `identifier` and the
+    // SEP as `recognizedBy`.
+    hasCredential: [
+      {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "degree",
+        name: profile.education.degree,
+        educationalLevel: "Licenciatura",
+        recognizedBy: {
+          "@type": "CollegeOrUniversity",
+          name: profile.education.school,
+        },
+      },
+      ...(license
+        ? [
+            {
+              "@type": "EducationalOccupationalCredential",
+              credentialCategory: "license",
+              name: `Cédula profesional · ${license.profession}`,
+              identifier: {
+                "@type": "PropertyValue",
+                propertyID: "Cédula profesional",
+                name: license.registry,
+                value: license.number,
+              },
+              dateCreated: license.issuedOn,
+              recognizedBy: {
+                "@type": "GovernmentOrganization",
+                name: license.authority,
+                url: "https://www.gob.mx/sep",
+              },
+              validIn: { "@type": "Country", name: "México" },
+              // No `url` for the credential itself: the registry is a
+              // search-by-name app with no per-cédula page, so there is no
+              // canonical URL for this record to point at. The number lives in
+              // `identifier`, which is what a consumer would match on anyway.
+            },
+          ]
+        : []),
+    ],
     sameAs: profile.socials
       .map((social) => social.href)
       .filter((href) => href.startsWith("http")),

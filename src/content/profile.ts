@@ -74,10 +74,36 @@ export const profile: Profile = {
     },
   ],
 
+  /**
+   * The degree line comes from the CV; `license` comes from the SEP's
+   * "Constancia de Situación Profesional". Only the four durable fields are
+   * copied here — number, official profession, and the two dates. That
+   * constancia's own folio, firma electrónica and sello digital are
+   * intentionally left out, and are not repeated in this comment either: they
+   * expire in 30 days and authenticate the PDF, not Luis.
+   *
+   * `profession` is the wording the registry holds, which is longer than the
+   * conversational `degree` above; both are kept so the site can be readable
+   * and still quote the registry verbatim where it matters.
+   */
   education: {
     degree: "Ingeniería en Sistemas Computacionales",
     school: "Universidad Cristóbal Colón",
     period: "2017 — 2021",
+    license: {
+      number: "14772789",
+      profession: "Licenciatura en Ingeniería en Sistemas Computacionales",
+      authority: "Secretaría de Educación Pública",
+      registry: "Registro Nacional de Profesionistas",
+      // The RNP is a client-rendered app with no GET route per cédula, so the
+      // lookup is a search by name. Linking the domain root rather than an
+      // internal path keeps this from rotting the next time they redeploy it.
+      registryUrl: "https://cedulaprofesional.sep.gob.mx/",
+      graduatedOn: "2022-05-27",
+      issuedOn: "2025-02-28",
+      graduatedLabel: "27 de mayo de 2022",
+      issuedLabel: "28 de febrero de 2025",
+    },
   },
 
   languages: [

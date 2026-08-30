@@ -86,6 +86,38 @@ export interface Education {
   degree: string;
   school: string;
   period: string;
+  /** Professional licence, when the degree has one on a public registry. */
+  license?: ProfessionalLicense;
+}
+
+/**
+ * A Mexican *cedula profesional*: the licence the SEP issues once a degree is
+ * registered, and the number a professional is legally identified by. It is
+ * public record — anyone can look it up by name on the Registro Nacional de
+ * Profesionistas — which is why the number is printed here rather than hidden.
+ *
+ * What is deliberately NOT modelled: the folio, electronic signature and sello
+ * digital of the *constancia de situacion profesional* this data came from.
+ * Those authenticate one 30-day document, not the person, and publishing them
+ * would be both meaningless and careless.
+ */
+export interface ProfessionalLicense {
+  /** The cedula number itself, e.g. "12345678". */
+  number: string;
+  /** Official degree wording as registered, which is longer than `degree`. */
+  profession: string;
+  /** Issuing authority, e.g. "Secretaria de Educacion Publica". */
+  authority: string;
+  /** Public registry the number can be checked against. */
+  registry: string;
+  /** Public lookup page for the registry. */
+  registryUrl: string;
+  /** ISO dates, for `<time dateTime>` and JSON-LD. */
+  graduatedOn: string;
+  issuedOn: string;
+  /** The same two dates, written the way es-MX reads them. */
+  graduatedLabel: string;
+  issuedLabel: string;
 }
 
 export interface Language {

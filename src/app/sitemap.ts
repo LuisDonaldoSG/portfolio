@@ -7,7 +7,7 @@ import { absoluteUrl } from "@/lib/site";
  * "now" on each deploy teaches crawlers to distrust lastmod. Bump this when the
  * content in src/content actually changes.
  */
-const CONTENT_UPDATED = new Date("2026-08-27T00:00:00.000Z");
+const CONTENT_UPDATED = new Date("2026-09-04T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -28,6 +28,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: CONTENT_UPDATED,
       changeFrequency: "yearly" as const,
       priority: project.featured ? 0.8 : 0.6,
+      // Next writes these into an <image:image> block, which is how a real
+      // capture becomes discoverable in Google Images.
+      ...(project.image ? { images: [absoluteUrl(project.image.src)] } : {}),
     })),
   ];
 }

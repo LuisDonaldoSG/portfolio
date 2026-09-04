@@ -48,6 +48,14 @@ export const projects: Project[] = [
       { label: "Casos de prueba", value: "1,464" },
       { label: "Líneas de TypeScript", value: "207 mil" },
     ],
+    image: {
+      src: "/proyectos/t1-envios-shipping-admin.png",
+      alt: "Panel de inicio de T1 Envíos: cotizador de envío por código postal y dimensiones, indicadores de envíos en tránsito, entregados y con incidencia, gráfica de los últimos siete días y saldo de la cuenta.",
+      width: 2990,
+      height: 1905,
+      blurDataURL:
+        "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAABwAQCdASoMAAgAAsBIJZ1/2AGIAAD+95wHcb2XxRryRU4Q9qogCDNdstkAAA==",
+    },
     stack: [
       "Next.js 15",
       "React 19",
@@ -101,6 +109,14 @@ export const projects: Project[] = [
       { label: "Componentes React", value: "181" },
       { label: "Rutas del App Router", value: "26" },
     ],
+    image: {
+      src: "/proyectos/account-admin.png",
+      alt: "Pantalla de información personal de T1 Cuenta: personalización del avatar, nombre y apellidos, e información de contacto con correo de Google y número celular verificado, junto a la navegación de finanzas y administración.",
+      width: 2000,
+      height: 1273,
+      blurDataURL:
+        "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAADQAQCdASoMAAgAAsBIJZwAAu07oHmuuAD++q4ffGuTea4pke9i4pgFAAA=",
+    },
     stack: [
       "Next.js 14",
       "React 18",
@@ -154,6 +170,14 @@ export const projects: Project[] = [
       { label: "Casos de prueba", value: "2,898" },
       { label: "Líneas TS/TSX", value: "595,932" },
     ],
+    image: {
+      src: "/proyectos/t1-store-admin.png",
+      alt: "Panel de inicio de T1 Tienda: resumen de rendimiento con ventas totales, pedidos y ticket promedio, y desglose de ventas por canal entre tienda en línea y Mercado Libre.",
+      width: 2000,
+      height: 1271,
+      blurDataURL:
+        "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAQCdASoMAAgAAsBIJaQAAugxyR50AAD++q7xpXRmO30urpQ9wAAA",
+    },
     stack: [
       "Next.js 14 (App Router)",
       "React 18",
@@ -261,6 +285,14 @@ export const projects: Project[] = [
       { label: "Países · idiomas", value: "4 · 3" },
       { label: "Líneas de TS/TSX", value: "48,153" },
     ],
+    image: {
+      src: "/proyectos/t1-landing.webp",
+      alt: "Portada de t1.com: el titular «Crea tu tienda en segundos», un campo para describir el negocio con categorías sugeridas, las métricas del ecosistema y los logotipos de las marcas que operan con T1.",
+      width: 2000,
+      height: 1273,
+      blurDataURL:
+        "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADwAQCdASoMAAgAAsBIJYwCdAEQEWooiAAA/vmIIwGKppLEcQoleKHuzfFGLo/ao6NtymNLtcewAA==",
+    },
     stack: [
       "Next.js 14 (App Router)",
       "React 18",

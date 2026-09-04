@@ -194,6 +194,20 @@ export function projectSchema(project: Project) {
     ),
     keywords: project.stack.join(", "),
     about: { "@type": "Thing", name: project.category },
+    // Only real captures are declared. The generated signature is decoration
+    // derived from `accent`, not a picture of the product, so claiming it as
+    // the project's image would be a lie told to a crawler.
+    ...(project.image
+      ? {
+          image: {
+            "@type": "ImageObject",
+            url: absoluteUrl(project.image.src),
+            width: project.image.width,
+            height: project.image.height,
+            caption: project.image.alt,
+          },
+        }
+      : {}),
     isPartOf: { "@id": absoluteUrl("/#website") },
   };
 }

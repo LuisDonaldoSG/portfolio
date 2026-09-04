@@ -56,7 +56,11 @@ function FeaturedBand({
           <ProjectVisual
             project={project}
             priority={priority}
-            sizes="(max-width: 1024px) 100vw, 620px"
+            // Above lg the box is portrait, so object-cover matches HEIGHT and
+            // paints the image ~1011px wide in a 620px-wide box. `sizes` must
+            // describe the painted width, not the box width, or the browser
+            // fetches the 640px candidate and upscales it 1.6x.
+            sizes="(max-width: 1024px) calc(100vw - 2.75rem), 1200px"
             className="aspect-[16/10] w-full lg:aspect-auto lg:min-h-[30rem]"
           />
 
@@ -72,7 +76,7 @@ function FeaturedBand({
                 {project.category}
               </span>
               <span className="type-caption">{project.year}</span>
-              <OwnershipBadge ownership={project.ownership} detailed />
+              <OwnershipBadge ownership={project.ownership} />
             </div>
 
             <div>

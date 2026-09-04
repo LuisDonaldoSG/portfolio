@@ -15,14 +15,15 @@ export interface Metric {
 
 export type OwnershipTier = "lead" | "core" | "contributor";
 
+/**
+ * How much of a codebase is Luis's, stated qualitatively. An earlier version
+ * carried commit counts and a percentage; those flattened very different kinds
+ * of work — a 5-commit design-system change and a 5-commit typo sweep score the
+ * same — so the tier and its label are the whole claim now.
+ */
 export interface Ownership {
   tier: OwnershipTier;
-  /** Commits authored by Luis in this repository. */
-  commits: number;
-  /** Total commits in the repository, for honest context. */
-  repoCommits: number;
   label: string;
-  share: string;
 }
 
 export interface Project {

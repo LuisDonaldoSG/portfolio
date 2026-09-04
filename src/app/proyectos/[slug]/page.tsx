@@ -115,7 +115,7 @@ export default async function ProjectPage({
                   {project.category}
                 </span>
                 <span className="type-caption">{project.year}</span>
-                <OwnershipBadge ownership={project.ownership} detailed />
+                <OwnershipBadge ownership={project.ownership} />
               </div>
 
               <h1 className="type-hero text-gradient">{project.name}</h1>
@@ -152,7 +152,13 @@ export default async function ProjectPage({
             <ProjectVisual
               project={project}
               priority
-              sizes="(max-width: 1240px) 100vw, 1240px"
+              // A real capture keeps its own ratio here: 16/9 is wider than any
+              // of the screenshots, so object-cover was cropping 112px off the
+              // top and taking the whole top bar with it. The aspect class stays
+              // for projects with no capture — the generated signature has no
+              // intrinsic height and collapses without it.
+              aspect="image"
+              sizes="(max-width: 1284px) calc(100vw - 2.75rem), 1240px"
               className="aspect-[16/9] w-full overflow-hidden rounded-tile border border-[var(--line)]"
             />
           </Reveal>
@@ -207,11 +213,6 @@ export default async function ProjectPage({
               </h2>
               <p className="mt-4 text-[0.9375rem] leading-[1.5] text-[var(--text-primary)]">
                 {project.role}
-              </p>
-              <p className="mt-5 border-t border-[var(--line)] pt-5 text-[0.8125rem] leading-[1.5] text-[var(--text-tertiary)]">
-                {project.ownership.repoCommits === 0
-                  ? "Proyecto propio, de principio a fin."
-                  : `${project.ownership.commits.toLocaleString("es-MX")} de los ${project.ownership.repoCommits.toLocaleString("es-MX")} commits del repositorio son míos (${project.ownership.share}).`}
               </p>
             </Reveal>
 

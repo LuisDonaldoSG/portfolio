@@ -82,7 +82,7 @@ Cada proyecto dibuja una **firma generada** (una ventana estilizada teñida con 
 | Identidad, trayectoria, formación, idiomas, skills | Tu CV (`cv.pdf`) |
 | Cédula profesional | «Constancia de Situación Profesional» de la SEP |
 | Proyectos, métricas, stacks, arquitectura | Lectura directa de los repos en `~/Developer/t1` |
-| `ownership` (commits propios vs. totales) | `git log` sobre cada repo |
+| `ownership` (nivel de participación) | `git log` sobre cada repo, traducido a un tier |
 | Sección **Ingeniería con IA** | `t1/shipping-admin-nextjs/CLAUDE.md` (288 líneas, autor único) |
 
 ### La sección de IA
@@ -95,7 +95,9 @@ La sección **Trayectoria** incluye T1 y Bullground como experiencia laboral, ta
 
 ## Atribución
 
-`ownership` en cada proyecto guarda los commits reales medidos sobre los repos de `~/Developer/t1`, junto al total del repositorio. La insignia y el bloque «Mi rol» los muestran tal cual. Si un número cambia, actualízalo ahí: un portafolio que infla la atribución es peor que uno corto.
+`ownership` en cada proyecto declara el nivel de participación —`lead`, `core` o `contributor`— y la etiqueta que lo acompaña. La insignia lo muestra tal cual. **No lleva conteos de commits ni porcentajes**: un mismo número de commits puede significar cosas muy distintas según el trabajo, así que la afirmación es cualitativa. Sigue valiendo la regla de fondo: un portafolio que infla la atribución es peor que uno corto.
+
+El comando de abajo sigue sirviendo para decidir en qué tier cae un proyecto nuevo, aunque su resultado ya no se publique.
 
 Para volver a medirlo todo:
 
@@ -109,7 +111,7 @@ for d in */; do d="${d%/}"
 done
 ```
 
-Hoy: **3,802 commits propios en 11 repositorios**. El portafolio muestra 6 proyectos, así que ~1,970 de esos commits viven en repos de T1 que ya no tienen tarjeta (`t1-envios-nextjs` 1861, `internal_admin_shipments` 64, `t1envios-backoffice` 42, `t1paginas-admin` 2, `Phoenix` 1). La etiqueta del stat dice «Commits propios **en T1**» justamente por eso: es producción de carrera, no la suma de las tarjetas. Si prefieres que cuadren, la suma de los seis `ownership.commits` es **1,832**.
+Hoy: **3,802 commits propios en 11 repositorios**. Ese número sí se publica, pero como stat de portada (`headlineStats` en `src/content/profile.ts`), no por proyecto: la etiqueta dice «Commits propios **en T1**» porque es producción de carrera y no la suma de las tarjetas —el portafolio muestra 6 proyectos y ~1,970 de esos commits viven en repos que ya no tienen tarjeta (`t1-envios-nextjs` 1861, `internal_admin_shipments` 64, `t1envios-backoffice` 42, `t1paginas-admin` 2, `Phoenix` 1).
 
 Para agregar o quitar un proyecto basta con editar el arreglo de `src/content/projects.ts`: los conteos de la portada, el índice, el sitemap y las imágenes OG se derivan de su longitud. El único número escrito a mano es el título de `/proyectos` (`src/app/proyectos/page.tsx`), porque va en letra.
 

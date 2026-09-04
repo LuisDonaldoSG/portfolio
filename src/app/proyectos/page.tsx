@@ -29,7 +29,7 @@ export default function ProjectsPage() {
           <SectionHeading
             eyebrow="Portafolio"
             title="Seis proyectos en producción."
-            description="Cada uno con su problema, su arquitectura y su nivel real de participación medido en commits. Sin adornos."
+            description="Cada uno con su problema, su arquitectura y el nivel real de participación que tuve en él. Sin adornos."
             as="h1"
           />
         </div>

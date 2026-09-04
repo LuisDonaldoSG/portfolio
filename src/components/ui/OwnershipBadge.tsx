@@ -8,22 +8,15 @@ const TIER_STYLE: Record<Ownership["tier"], string> = {
 
 type Props = {
   ownership: Ownership;
-  /** Include the raw commit counts. */
-  detailed?: boolean;
   className?: string;
 };
 
 /**
- * States the real contribution to a repository. Shown everywhere a project is,
- * so a shared codebase is never mistaken for solo authorship.
+ * States the level of contribution to a repository. Shown everywhere a project
+ * is, so a shared codebase is never mistaken for solo authorship.
  */
-export function OwnershipBadge({ ownership, detailed = false, className = "" }: Props) {
-  const { tier, label, commits, repoCommits, share } = ownership;
-  const solo = repoCommits === 0;
-
-  const detail = solo
-    ? "Proyecto propio"
-    : `${commits.toLocaleString("es-MX")} de ${repoCommits.toLocaleString("es-MX")} commits del repositorio (${share})`;
+export function OwnershipBadge({ ownership, className = "" }: Props) {
+  const { tier, label } = ownership;
 
   return (
     <span
@@ -35,15 +28,7 @@ export function OwnershipBadge({ ownership, detailed = false, className = "" }: 
           <circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" strokeWidth="1.2" />
         ) : null}
       </svg>
-      {solo ? "Proyecto propio" : label}
-      {detailed && !solo ? (
-        <span className="font-normal opacity-70">
-          · {commits.toLocaleString("es-MX")} commits ({share})
-        </span>
-      ) : null}
-      {/* The compact badge shows only the tier; the figures behind it stay
-          available to assistive tech instead of hiding in a title attribute. */}
-      {!detailed ? <span className="sr-only"> — {detail}</span> : null}
+      {label}
     </span>
   );
 }

@@ -209,8 +209,8 @@ export const profile: Profile = {
  *                card (t1-envios-nextjs 1861, internal_admin 64, backoffice 42,
  *                t1paginas-admin 2, Phoenix 1). The label says "en T1" for
  *                exactly that reason — it is career output, not a sum of the
- *                cards below. If you would rather it match the cards, the sum
- *                of the six ownership.commits values is 1,832.
+ *                cards below. The cards no longer state per-project commit
+ *                counts at all, so this is the only commit figure on the site.
  * - pruebas      1,464 = `it(`/`test(` calls across the 263 *.test.ts(x) files
  *                in shipping-admin-nextjs, where 118 of the 124 commits
  *                touching tests are his.

@@ -6,6 +6,23 @@ type Props = {
   priority?: boolean;
   className?: string;
   sizes?: string;
+  /**
+   * Which box the capture fills.
+   *
+   * "slot" (default) — the caller's aspect class wins and the image is cropped
+   * to fit it. The crop is anchored top-left, never centred: a screenshot of an
+   * admin keeps its identity in the top-left corner (logo, tenant, nav, search),
+   * so that is the corner that has to survive an arbitrary crop. Centred, the
+   * home band's portrait box cuts the balance mid-digits and halves two buttons.
+   *
+   * "image" — the wrapper takes the file's own ratio, so nothing is cropped.
+   * The inline aspect-ratio beats the caller's aspect utility, which is what
+   * lets one className serve both branches: the generated signature is built
+   * entirely from absolutely-positioned layers and collapses to zero height
+   * without an aspect class, so the class has to stay for projects with no
+   * capture. Ignored when the project has no image.
+   */
+  aspect?: "slot" | "image";
 };
 
 /**
@@ -21,20 +38,33 @@ export function ProjectVisual({
   priority = false,
   className = "",
   sizes = "(max-width: 768px) 100vw, 50vw",
+  aspect = "slot",
 }: Props) {
-  if (project.image) {
+  const image = project.image;
+
+  if (image) {
     return (
-      <div className={`relative overflow-hidden ${className}`}>
+      <div
+        className={`relative overflow-hidden ${className}`}
+        style={
+          aspect === "image"
+            ? { aspectRatio: `${image.width} / ${image.height}` }
+            : undefined
+        }
+      >
         <Image
-          src={project.image.src}
-          alt={project.image.alt}
-          width={project.image.width}
-          height={project.image.height}
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
           sizes={sizes}
           priority={priority}
-          placeholder={project.image.blurDataURL ? "blur" : "empty"}
-          blurDataURL={project.image.blurDataURL}
-          className="size-full object-cover"
+          // Default q=75 AVIF is tuned for photographs and smears the 10-13px
+          // UI type that is the whole point of a product capture.
+          quality={90}
+          placeholder={image.blurDataURL ? "blur" : "empty"}
+          blurDataURL={image.blurDataURL}
+          className="size-full object-cover object-top-left"
         />
       </div>
     );

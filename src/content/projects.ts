@@ -4,9 +4,10 @@ import type { Project } from "./types";
  * Projects are ordered best-first; the home page reads the first four with
  * `featured: true` for the showcase bands and the rest for the grid.
  *
- * `ownership.commits` is the number of commits authored by Luis in that repo,
- * measured with `git log --author`, next to the repository total. Nothing here
- * is estimated — a portfolio that inflates attribution is worse than a short one.
+ * `ownership` states the level of contribution in words rather than in commit
+ * counts: the tier drives the badge's styling and the label is what is read.
+ * Nothing here is inflated — a portfolio that overstates attribution is worse
+ * than a short one.
  */
 export const projects: Project[] = [
   {
@@ -20,12 +21,9 @@ export const projects: Project[] = [
     featured: true,
     ownership: {
       tier: "lead",
-      commits: 1315,
-      repoCommits: 2094,
       label: "Autor principal",
-      share: "63%",
     },
-    role: "Arquitectura frontend y desarrollo principal: autor de la mayoría de los commits del repositorio.",
+    role: "Arquitectura frontend y desarrollo principal: responsable de la mayor parte del código del repositorio.",
     summary:
       "Portal SaaS multi-tenant con el que los comercios de T1 operan su logística: cotizan, generan guías (individuales o masivas), programan recolecciones, sincronizan pedidos de sus marketplaces, gestionan incidencias y sobrepeso, recargan saldo y miden todo desde dashboards de reportes. Son 67 rutas sobre una arquitectura en capas estricta —UI, hooks, estado, Server Actions como BFF y una capa de servicios que es la única que habla con las APIs externas— con 1,464 casos de prueba que la sostienen.",
     problem:
@@ -82,10 +80,7 @@ export const projects: Project[] = [
     featured: true,
     ownership: {
       tier: "core",
-      commits: 120,
-      repoCommits: 1266,
       label: "Desarrollo central",
-      share: "9%",
     },
     role: "Desarrollo frontend de los módulos de facturación, saldos y movimientos, métodos de pago, antifraude y planes",
     summary:
@@ -143,10 +138,7 @@ export const projects: Project[] = [
     featured: false,
     ownership: {
       tier: "contributor",
-      commits: 255,
-      repoCommits: 10963,
       label: "Colaborador",
-      share: "2%",
     },
     role: "Desarrollo frontend del módulo de órdenes y logística multicanal: generación de guías, flujos por marketplace (Shopify, WooCommerce, TikTok Shop, AliExpress, Tienda Nube, Walmart), Home y políticas de privacidad.",
     summary:
@@ -204,10 +196,7 @@ export const projects: Project[] = [
     featured: true,
     ownership: {
       tier: "core",
-      commits: 95,
-      repoCommits: 652,
       label: "Desarrollo central",
-      share: "15%",
     },
     role: "Desarrollo frontend del flujo de creación express, formularios multipaso y migración de servicios a Server Actions",
     summary:
@@ -257,10 +246,7 @@ export const projects: Project[] = [
     featured: false,
     ownership: {
       tier: "contributor",
-      commits: 42,
-      repoCommits: 883,
       label: "Colaborador",
-      share: "5%",
     },
     role: "Desarrollo frontend en la vertical de Envíos: rastreo renderizado en servidor, flujos de alta con SSO y gestión de releases hotfix a producción",
     summary:
@@ -319,10 +305,7 @@ export const projects: Project[] = [
     featured: false,
     ownership: {
       tier: "contributor",
-      commits: 5,
-      repoCommits: 1116,
       label: "Colaborador",
-      share: "0%",
     },
     role: "Contribución como desarrollador dentro de un equipo: features en Navbar y BalanceBanner (callbacks de navegación, balance en móvil, configuración de rutas). La autoría principal del repositorio corresponde a otro integrante del equipo T1; el proyecto se documenta aquí como librería compartida de la que también se es consumidor e integrador.",
     summary:

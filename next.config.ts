@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
     // Screenshots dropped into /public are served locally; formats are listed
     // so a future remote source gets modern encodings for free.
     formats: ["image/avif", "image/webp"],
+    // Next rejects any quality not listed here, so ProjectVisual's quality={90}
+    // depends on this entry.
+    qualities: [75, 90],
   },
 
   async headers() {
